@@ -49,7 +49,7 @@ def district(x0, x1, y0, y1):
         road_h(x0, x1, y - 28); hedge_h(x0, x1, y - 50); hedge_h(x0, x1, y + 2)
         x = x0; n = 0
         while x < x1 - 150:
-            if n % 3 == 0: road_v(x, y - 28, y + RP - 28); x += 32; hedge_v(x, y + 2, y + 128); x += 22
+            if n % 3 == 0: road_v(x, y - 28, y + RP - 28); piece("lamp", x - 24, y - 10, "lamp"); piece("lamp", x + 34, y + 60, "lamp"); x += 32; hedge_v(x, y + 2, y + 128); x += 22
             k = HOUSES[hk % len(HOUSES)]; hk += 1; m = META[k]
             if hk % 11 == 5 and x < x1 - 200: m2 = piece("pond2" if hk % 22 == 5 else "playground", x, y + 20); x += m2["w"] + 10; continue
             piece(k, x, y + 8, "house"); L["lots"].append([x + m["w"] / 2, y + 8 + m["h"] - 8, m["h"], m["w"]]); x += m["w"] + 6; n += 1
@@ -57,6 +57,7 @@ def district(x0, x1, y0, y1):
         y += RP
 district(-1500, -60, 60, BH); district(1236, 2700, 60, BH); district(-1500, 2700, BH + 60, BH + 420)
 road_v(-60, -10, BH + 420); road_v(1204, -10, BH + 420); road_h(-1500, 2700, BH + 2)
+L["glows"] = [[527, 945], [653, 945], [255, 960], [935, 960], [590, 340], [700, 965]]   # lampiões pintados dentro dos recortes (portal, muro): só ganham halo à noite
 L["points"] = {"padaria": [160, 990], "escola": [785, 290], "delegacia": [830, 290], "oficina": [340, 290], "floricultura": [1035, 990], "prefeitura": [590, 170], "palanque": [590, 560], "mansao": [1040, 505], "praca": [590, 560], "biblioteca": [770, 695], "mercado": [430, 695], "lago": [300, 295], "parque": [1030, 290], "coreto": [450, 505], "moinho": [150, 290]}
 # profundidade: peças ordenadas pelo pé
 L["pieces"].sort(key=lambda p: p["y"] + p["h"])

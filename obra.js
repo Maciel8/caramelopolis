@@ -42,7 +42,7 @@ for (const p of L.pieces) { const el = document.createElement("img"); el.src = `
 const B = {}; const bTags = [];
 for (const [k, b] of Object.entries(L.buildings)) { B[k] = painted(b.x, b.y, b.h, b.w); bTags.push(tag(b.label, B[k], 1, k === "mansao" ? "#ffe27a" : k === "delegacia" ? "#cfe6ff" : "#fff6d8")); }
 const popTxt = wtext("POP. 0", 590, 1016, 4, "#ffd24a", 40001);
-const lanterns = L.pieces.filter((p) => p.k === "lamp").map((p) => { const l = dot(16, 16, "rgba(255,200,90,0.35)"); l.pos = [p.x + 15, p.y + 22]; return l; });
+const lanterns = [...L.pieces.filter((p) => p.k === "lamp").map((p) => [p.x + 15, p.y + 22]), ...(L.glows || [])].map(([x, y]) => { const l = dot(16, 16, "rgba(255,200,90,0.35)"); l.pos = [x, y]; return l; });
 const smokes = []; for (const [cx, cy] of [[640, 70], [420, 150], [310, 540], [1000, 405]]) for (let k = 0; k < 4; k++) smokes.push({ d: dot(3, 3, "#f4f1ea"), cx, cy, k });
 const flies = []; for (let k = 0; k < 8; k++) flies.push({ d: dot(3, 3, ["#fff3a0", "#ffffff", "#ffb3d9"][k % 3]), k });
 const spray = []; for (let k = 0; k < 10; k++) spray.push({ d: dot(2, 3, "#bfe9ff"), k });
