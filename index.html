@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Caramelópolis · a cidade dos cachorros</title>
+<meta name="description" content="O mapa de Caramelópolis, a cidade fundada por um vira-lata caramelo. Cada comentário no Instagram vira um morador. Acha a sua casa.">
+<meta property="og:title" content="Caramelópolis · a cidade dos cachorros">
+<meta property="og:description" content="Cada comentário vira um morador. Acha a sua casa no mapa.">
+<meta property="og:image" content="capa.jpg">
+<link rel="icon" href="sprites/dog_caramelo2_front.png">
+<style>
+  @font-face { font-family: PS2P; src: url(fonts/PressStart2P.ttf); }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #5d9a3f; font-family: PS2P, monospace; color: #fff8e8; touch-action: none; }
+  #view { position: fixed; inset: 0; overflow: hidden; background: #5d9a3f; cursor: grab; }
+  #world { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; image-rendering: pixelated; }
+  #world img, .tile { image-rendering: pixelated; image-rendering: crisp-edges; }
+  .tile { position: absolute; }
+  .spr { position: absolute; pointer-events: none; }
+  .spr.hit { pointer-events: auto; cursor: pointer; }
+  .shd { position: absolute; pointer-events: none; }
+  .ptag { position: absolute; transform: translate(-50%, -100%); font-family: PS2P, monospace; font-size: 5px; line-height: 1; padding: 3px 4px 2px; border: 1px solid #3b2a14; border-radius: 2px; color: #3b2a14; white-space: nowrap; pointer-events: none; }
+  .wtext { position: absolute; transform: translate(-50%, 0); font-family: PS2P, monospace; white-space: nowrap; text-align: center; line-height: 1.4; pointer-events: none; }
+  #night { position: fixed; inset: 0; pointer-events: none; background: #1a2250; opacity: 0; transition: opacity 2s; mix-blend-mode: multiply; }
+  #hud { position: fixed; left: 0; right: 0; top: 0; padding: max(10px, env(safe-area-inset-top)) 12px 8px; display: flex; flex-direction: column; align-items: center; gap: 6px; pointer-events: none; }
+  #hud > * { pointer-events: auto; }
+  .board { background: #3b2a14; border: 2px solid #1f1409; border-radius: 6px; padding: 6px 12px; display: flex; gap: 12px; align-items: center; box-shadow: 0 3px 0 #1f1409; }
+  .board .lab { font-size: 7px; color: #cdb98a; }
+  .board .lab.red { color: #ff8a7a; }
+  .board .num { font-size: 16px; color: #fff; margin-top: 3px; }
+  .board .dot { font-size: 14px; color: #cdb98a; }
+  #title { font-size: 11px; color: #fff2cc; text-shadow: 2px 2px 0 #3b2a14, -1px -1px 0 #3b2a14, 1px -1px 0 #3b2a14, -1px 1px 0 #3b2a14; letter-spacing: 1px; }
+  #urna { font-size: 7px; background: #fff8e8; color: #3b2a14; border: 2px solid #3b2a14; border-radius: 6px; padding: 6px 10px; box-shadow: 0 3px 0 #1f1409; }
+  #urna b { color: #8a2a1a; }
+  #bottom { position: fixed; left: 0; right: 0; bottom: 0; padding: 8px 12px max(10px, env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 8px; align-items: stretch; pointer-events: none; }
+  #bottom > * { pointer-events: auto; }
+  #search { width: 100%; font-family: PS2P, monospace; font-size: 9px; padding: 11px 12px; border: 2px solid #3b2a14; border-radius: 6px; background: #fff8e8; color: #3b2a14; outline: none; box-shadow: 0 3px 0 #1f1409; }
+  #search::placeholder { color: #9a8a6a; }
+  #hits { display: none; flex-direction: column; gap: 4px; max-height: 40vh; overflow: auto; }
+  #hits button { font-family: PS2P, monospace; font-size: 8px; text-align: left; padding: 9px 10px; border: 2px solid #3b2a14; border-radius: 6px; background: #ffe27a; color: #3b2a14; }
+  #hits button small { display: block; font-size: 6px; color: #6b5a3a; margin-top: 4px; }
+  .row { display: flex; gap: 8px; }
+  .btn { flex: 1; font-family: PS2P, monospace; font-size: 8px; padding: 11px 10px; border: 2px solid #3b2a14; border-radius: 6px; background: #ffe27a; color: #3b2a14; text-decoration: none; text-align: center; box-shadow: 0 3px 0 #1f1409; cursor: pointer; line-height: 1.5; }
+  .btn.green { background: #7cff9b; }
+  .btn.dark { background: #3b2a14; color: #fff8e8; }
+  #card { position: fixed; left: 50%; bottom: 0; transform: translate(-50%, 110%); width: min(100%, 420px); background: #fff8e8; color: #3b2a14; border: 3px solid #3b2a14; border-bottom: none; border-radius: 12px 12px 0 0; padding: 14px 16px max(16px, env(safe-area-inset-bottom)); transition: transform .25s; z-index: 50; box-shadow: 0 -4px 0 #1f1409; }
+  #card.open { transform: translate(-50%, 0); }
+  #card .close { position: absolute; right: 10px; top: 8px; font-family: PS2P; font-size: 10px; background: none; border: none; color: #3b2a14; cursor: pointer; }
+  #card .head { display: flex; gap: 12px; align-items: center; }
+  #card .pic { width: 64px; height: 64px; background: #cfe8b0; border: 2px solid #3b2a14; border-radius: 6px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  #card .pic img { height: 52px; image-rendering: pixelated; }
+  #card h2 { margin: 0; font-size: 12px; }
+  #card .sub { font-size: 7px; margin-top: 6px; line-height: 1.7; color: #6b5a3a; }
+  #card .sub b { color: #3b2a14; }
+  #card .actions { display: flex; gap: 8px; margin-top: 12px; }
+  #toast { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 8px; background: #3b2a14; color: #fff; padding: 10px 14px; border-radius: 6px; opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 60; text-align: center; line-height: 1.6; }
+  #loading { position: fixed; inset: 0; background: #5d9a3f; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 14px; font-size: 9px; z-index: 100; color: #fff2cc; text-shadow: 2px 2px 0 #3b2a14; }
+  #loading img { height: 64px; image-rendering: pixelated; animation: hop .6s infinite; }
+  @keyframes hop { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+  #hint { font-size: 6px; color: #fff2cc; text-shadow: 1px 1px 0 #3b2a14; opacity: .9; text-align: center; }
+</style>
+</head>
+<body>
+<div id="view"><div id="world"></div></div>
+<div id="night"></div>
+<div id="hud">
+  <div id="title">CARAMELÓPOLIS</div>
+  <div class="board"><div><div class="lab">MORADORES</div><div class="num" id="nMor">0</div></div><div class="dot">·</div><div><div class="lab red">PREFEITO</div><div class="num" id="nPref">?</div></div></div>
+  <div id="urna"></div>
+  <div id="hint">arrasta pra passear · pinça pra dar zoom · toca num cachorro</div>
+</div>
+<div id="bottom">
+  <div id="hits"></div>
+  <input id="search" placeholder="🔎 acha a sua casa: digita seu nome" autocomplete="off">
+  <div class="row"><a class="btn green" id="ctaEntrar" target="_blank" rel="noopener">AINDA NÃO MORA AQUI? 🐕</a><button class="btn dark" id="btnShare">COMPARTILHAR</button></div>
+</div>
+<div id="card"><button class="close" id="cardClose">✕</button><div class="head"><div class="pic"><img id="cPic" alt=""></div><div><h2 id="cNome"></h2><div class="sub" id="cSub"></div></div></div><div class="actions"><a class="btn" id="cReel" target="_blank" rel="noopener">VER O EPISÓDIO</a><button class="btn green" id="cCasa">IR PRA CASA</button></div></div>
+<div id="toast"></div>
+<div id="loading"><img src="sprites/dog_caramelo2_front.png" alt=""><div>construindo a cidade…</div></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

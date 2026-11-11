@@ -1,0 +1,627 @@
+{
+ "atualizado": "2026-11-11",
+ "episodio_atual": 3,
+ "episodios": {
+  "1": "https://www.instagram.com/caramelopolis.br/reel/DfkGdM9q87-/",
+  "2": "https://www.instagram.com/caramelopolis.br/reel/Dfk8H-NK3Sn/",
+  "3": "https://www.instagram.com/caramelopolis.br/reel/DfmXMleK4Jw/"
+ },
+ "urna": {
+  "aberta": true,
+  "fecha": "no ep. 4",
+  "parcial": [
+   [
+    "LILY",
+    3
+   ],
+   [
+    "DAVI",
+    2
+   ],
+   [
+    "DIOGZIN",
+    0
+   ],
+   [
+    "RONALDO",
+    0
+   ],
+   [
+    "LUCAS",
+    0
+   ]
+  ]
+ },
+ "moradores": [
+  {
+   "id": "pequenna_lily",
+   "nome": "Lily",
+   "raca": "pastor alemão",
+   "trabalho": "candidata a prefeita (petisco de graça)",
+   "ep": 1,
+   "sprite": "dog_pastor",
+   "work": "palanque",
+   "casa": 0
+  },
+  {
+   "id": "diogzin.wx_",
+   "nome": "Diogzin",
+   "raca": "husky",
+   "trabalho": "candidato a prefeito (neve)",
+   "ep": 1,
+   "sprite": "dog_husky_plain",
+   "work": "palanque",
+   "casa": 1
+  },
+  {
+   "id": "davigoncalves000",
+   "nome": "Davi",
+   "raca": "pastor alemão",
+   "trabalho": "candidato a prefeito (ordem)",
+   "ep": 1,
+   "sprite": "dog_pastor",
+   "work": "palanque",
+   "casa": 2
+  },
+  {
+   "id": "ronaldo.rsn",
+   "nome": "Ronaldo",
+   "raca": "pitbull",
+   "trabalho": "candidato a prefeito (fogo)",
+   "ep": 1,
+   "sprite": "dog_pitbull",
+   "work": "palanque",
+   "casa": 3
+  },
+  {
+   "id": "marcosmano_lucas",
+   "nome": "Lucas",
+   "raca": "irmão caramelo",
+   "trabalho": "candidato a presidente",
+   "ep": 1,
+   "sprite": "dog_caramelo2",
+   "work": "palanque",
+   "casa": 4
+  },
+  {
+   "id": "biellx_dh77",
+   "nome": "Biellx",
+   "raca": "rottweiler",
+   "trabalho": "comandante da polícia",
+   "ep": 1,
+   "sprite": "dog_rottweiler",
+   "work": "delegacia",
+   "casa": 5
+  },
+  {
+   "id": "013._miguel_",
+   "nome": "Miguel",
+   "raca": "são bernardo",
+   "trabalho": "policial",
+   "ep": 1,
+   "sprite": "dog_saobernardo",
+   "work": "delegacia",
+   "casa": 6
+  },
+  {
+   "id": "g.moreira_da_gti",
+   "nome": "Guilherme",
+   "raca": "pitbull",
+   "trabalho": "médico",
+   "ep": 1,
+   "sprite": "dog_pitbull",
+   "work": "praca",
+   "casa": 7
+  },
+  {
+   "id": "enzo_zz100",
+   "nome": "Enzo",
+   "raca": "pastor alemão",
+   "trabalho": "capitão do BOPE",
+   "ep": 1,
+   "sprite": "dog_pastor",
+   "work": "delegacia",
+   "casa": "rua"
+  },
+  {
+   "id": "guizinnn_dls",
+   "nome": "Gui",
+   "raca": "pitbull",
+   "trabalho": "policial do BOPE",
+   "ep": 1,
+   "sprite": "dog_pitbull",
+   "work": "delegacia",
+   "casa": 8
+  },
+  {
+   "id": "clovisz07_",
+   "nome": "Clovis",
+   "raca": "pitbull",
+   "trabalho": "dono de um balé",
+   "ep": 1,
+   "sprite": "dog_pitbull",
+   "work": "praca",
+   "casa": 9
+  },
+  {
+   "id": "larissa_rustick",
+   "nome": "Larissa",
+   "raca": "salsicha",
+   "trabalho": "policial",
+   "ep": 1,
+   "sprite": "dog_salsicha2",
+   "work": "delegacia",
+   "casa": 10
+  },
+  {
+   "id": "lzinn_.x7x_",
+   "nome": "Lzinn",
+   "raca": "dogue alemão",
+   "trabalho": "policial",
+   "ep": 1,
+   "sprite": "dog_dogue",
+   "work": "delegacia",
+   "casa": 11
+  },
+  {
+   "id": "ow.lucass",
+   "nome": "Lucass",
+   "raca": "doberman",
+   "trabalho": "policial",
+   "ep": 1,
+   "sprite": "dog_doberman",
+   "work": "delegacia",
+   "casa": 12
+  },
+  {
+   "id": "ryannzxx__00",
+   "nome": "Ryann",
+   "raca": "pitbull",
+   "trabalho": "policial",
+   "ep": 1,
+   "sprite": "dog_pitbull",
+   "work": "delegacia",
+   "casa": 13
+  },
+  {
+   "id": "farquesjose",
+   "nome": "José",
+   "raca": "rottweiler",
+   "trabalho": "policial",
+   "ep": 1,
+   "sprite": "dog_rottweiler",
+   "work": "delegacia",
+   "casa": 14
+  },
+  {
+   "id": "mzj_01_",
+   "nome": "Mzj",
+   "raca": "pitbull",
+   "trabalho": "policial",
+   "ep": 1,
+   "sprite": "dog_pitbull",
+   "work": "delegacia",
+   "casa": 15
+  },
+  {
+   "id": "pedrin11056",
+   "nome": "Pedrin",
+   "raca": "pitbull",
+   "trabalho": "médico",
+   "ep": 1,
+   "sprite": "dog_pitbull",
+   "work": "praca",
+   "casa": 16
+  },
+  {
+   "id": "luiz_eduardorezende",
+   "nome": "Luiz Eduardo",
+   "raca": "boerboel",
+   "trabalho": "policial",
+   "ep": 1,
+   "sprite": "dog_boerboel",
+   "work": "delegacia",
+   "casa": 17
+  },
+  {
+   "id": "ytallo____.22",
+   "nome": "Ytalo",
+   "raca": "pitbull",
+   "trabalho": "pedreiro",
+   "ep": 1,
+   "sprite": "dog_pitbull",
+   "work": "praca",
+   "casa": 18
+  },
+  {
+   "id": "silvaz_.017",
+   "nome": "Silvaz",
+   "raca": "vira-lata",
+   "trabalho": "policial",
+   "ep": 1,
+   "sprite": "dog_caramelo2",
+   "work": "delegacia",
+   "casa": 19
+  },
+  {
+   "id": "caua0012x",
+   "nome": "Cauã",
+   "raca": "kangal",
+   "trabalho": "policial das forças especiais",
+   "ep": 1,
+   "sprite": "dog_kangal",
+   "work": "delegacia",
+   "casa": 20
+  },
+  {
+   "id": "p_franca2012",
+   "nome": "França",
+   "raca": "mastim inglês",
+   "trabalho": "guarda da vila",
+   "ep": 1,
+   "sprite": "dog_mastim",
+   "work": "delegacia",
+   "casa": 21
+  },
+  {
+   "id": "sousazzcl__",
+   "nome": "Davi",
+   "raca": "pinscher",
+   "trabalho": "bombeiro",
+   "ep": 1,
+   "sprite": "dog_pinscher",
+   "work": "praca",
+   "casa": 22
+  },
+  {
+   "id": "_caua._7",
+   "nome": "Cauã",
+   "raca": "greyhound",
+   "trabalho": "bombeiro",
+   "ep": 1,
+   "sprite": "dog_greyhound",
+   "work": "praca",
+   "casa": 23
+  },
+  {
+   "id": "t1t4n_o",
+   "nome": "Titan",
+   "raca": "pitbull",
+   "trabalho": "bombeiro",
+   "ep": 1,
+   "sprite": "dog_pitbull",
+   "work": "praca",
+   "casa": 24
+  },
+  {
+   "id": "vini_alves_24459d",
+   "nome": "Vini",
+   "raca": "vira-lata",
+   "trabalho": "bombeiro",
+   "ep": 1,
+   "sprite": "dog_caramelo2",
+   "work": "praca",
+   "casa": 25
+  },
+  {
+   "id": "felipinn.xz",
+   "nome": "Felipinn",
+   "raca": "husky",
+   "trabalho": "padeiro (e candidato: sonho de graça)",
+   "ep": 1,
+   "sprite": "dog_husky_plain",
+   "work": "padaria",
+   "casa": 26
+  },
+  {
+   "id": "music_addicteddd777",
+   "nome": "Music",
+   "raca": "pinscher",
+   "trabalho": "padeiro que grita com os clientes",
+   "ep": 1,
+   "sprite": "dog_pinscher",
+   "work": "padaria",
+   "casa": 27
+  },
+  {
+   "id": "rafael_tz_0913",
+   "nome": "Rafael",
+   "raca": "vira-lata",
+   "trabalho": "padaria",
+   "ep": 1,
+   "sprite": "dog_caramelo2",
+   "work": "padaria",
+   "casa": 28
+  },
+  {
+   "id": "lua.nxxr7",
+   "nome": "Lua",
+   "raca": "pastor alemão",
+   "trabalho": "diretora da escola",
+   "ep": 1,
+   "sprite": "dog_pastor",
+   "work": "escola",
+   "casa": 29
+  },
+  {
+   "id": "kamillycaxias",
+   "nome": "Kamilly",
+   "raca": "galgo inglês",
+   "trabalho": "coordenadora da escola",
+   "ep": 1,
+   "sprite": "dog_greyhound",
+   "work": "escola",
+   "casa": 30
+  },
+  {
+   "id": "arthur_lima_duarte.a",
+   "nome": "Arthur",
+   "raca": "salsicha",
+   "trabalho": "professor",
+   "ep": 1,
+   "sprite": "dog_salsicha2",
+   "work": "escola",
+   "casa": 31
+  },
+  {
+   "id": "blackzin7.ff",
+   "nome": "Blackzin",
+   "raca": "pitbull",
+   "trabalho": "professor",
+   "ep": 1,
+   "sprite": "dog_pitbull",
+   "work": "escola",
+   "casa": 32
+  },
+  {
+   "id": "rafinha_240466",
+   "nome": "Rafinha",
+   "raca": "shih tzu",
+   "trabalho": "médico",
+   "ep": 1,
+   "sprite": "dog_shihtzu",
+   "work": "praca",
+   "casa": 33
+  },
+  {
+   "id": "giselle.lohanny25",
+   "nome": "Giselle",
+   "raca": "poodle",
+   "trabalho": "enfermeira chefe",
+   "ep": 1,
+   "sprite": "dog_poodle2",
+   "work": "praca",
+   "casa": 34
+  },
+  {
+   "id": "mariaizabels09",
+   "nome": "Maria Izabel",
+   "raca": "yorkshire",
+   "trabalho": "veterinária",
+   "ep": 1,
+   "sprite": "dog_yorkshire",
+   "work": "praca",
+   "casa": 35
+  },
+  {
+   "id": "bernardoartess",
+   "nome": "Bernardo",
+   "raca": "salsicha",
+   "trabalho": "dentista",
+   "ep": 1,
+   "sprite": "dog_salsicha2",
+   "work": "praca",
+   "casa": 36
+  },
+  {
+   "id": "deceased.moths",
+   "nome": "Moths",
+   "raca": "spitz japonês",
+   "trabalho": "farmácia natural",
+   "ep": 1,
+   "sprite": "dog_spitz",
+   "work": "praca",
+   "casa": 37
+  },
+  {
+   "id": "gust7_gh",
+   "nome": "Gust",
+   "raca": "vira-lata",
+   "trabalho": "entregador de pizza",
+   "ep": 1,
+   "sprite": "dog_caramelo2",
+   "work": "praca",
+   "casa": 38
+  },
+  {
+   "id": "max_silvazx7",
+   "nome": "Max",
+   "raca": "pitbull",
+   "trabalho": "treinador",
+   "ep": 1,
+   "sprite": "dog_pitbull",
+   "work": "praca",
+   "casa": 39
+  },
+  {
+   "id": "josexyt._",
+   "nome": "José",
+   "raca": "cane corso",
+   "trabalho": "mecânico",
+   "ep": 1,
+   "sprite": "dog_canecorso",
+   "work": "oficina",
+   "casa": 40
+  },
+  {
+   "id": "luan_.peixoto",
+   "nome": "Luan",
+   "raca": "pastor malinois",
+   "trabalho": "mecânico",
+   "ep": 1,
+   "sprite": "dog_malinois",
+   "work": "oficina",
+   "casa": 41
+  },
+  {
+   "id": "caike.freitas22",
+   "nome": "Caike",
+   "raca": "boiadeiro australiano",
+   "trabalho": "fazendeiro",
+   "ep": 1,
+   "sprite": "dog_boiadeiro",
+   "work": "praca",
+   "casa": 42
+  },
+  {
+   "id": "caduuu_ig",
+   "nome": "Cadu",
+   "raca": "dálmata",
+   "trabalho": "dono do playground",
+   "ep": 1,
+   "sprite": "dog_dalmata",
+   "work": "praca",
+   "casa": 43
+  },
+  {
+   "id": "jacson_eletrotec",
+   "nome": "Jacson",
+   "raca": "pinscher",
+   "trabalho": "vizinho fofoqueiro",
+   "ep": 1,
+   "sprite": "dog_pinscher",
+   "work": "praca",
+   "casa": 44
+  },
+  {
+   "id": "danielmottaj",
+   "nome": "Daniel",
+   "raca": "pinscher",
+   "trabalho": "corretor",
+   "ep": 1,
+   "sprite": "dog_pinscher",
+   "work": "prefeitura",
+   "casa": 45
+  },
+  {
+   "id": "luizzbx7",
+   "nome": "Luiz",
+   "raca": "pug",
+   "trabalho": "advogado",
+   "ep": 1,
+   "sprite": "dog_pug2",
+   "work": "prefeitura",
+   "casa": 46
+  },
+  {
+   "id": "bazar_mv2023_gv",
+   "nome": "Bazar",
+   "raca": "vira-lata",
+   "trabalho": "jogador de futebol",
+   "ep": 1,
+   "sprite": "dog_caramelo2",
+   "work": "praca",
+   "casa": 47
+  },
+  {
+   "id": "qvc_davizinho244",
+   "nome": "Davizinho",
+   "raca": "pinscher",
+   "trabalho": "ainda escolhendo o trabalho",
+   "ep": 1,
+   "sprite": "dog_pinscher",
+   "work": "praca",
+   "casa": 48
+  },
+  {
+   "id": "racadodia",
+   "nome": "Speed",
+   "raca": "salsicha de pelo longo",
+   "trabalho": "investidor e empresário",
+   "ep": 1,
+   "sprite": "dog_salsicha_longo",
+   "work": "mansao",
+   "casa": "mansao"
+  },
+  {
+   "id": "big.hero72",
+   "nome": "Hero",
+   "raca": "vira-lata",
+   "trabalho": "eleitor (votou na Lily)",
+   "ep": 2,
+   "sprite": "dog_caramelo2",
+   "work": "praca",
+   "casa": 49
+  },
+  {
+   "id": "isaques124",
+   "nome": "Isaque",
+   "raca": "pug",
+   "trabalho": "professor de matemática",
+   "ep": 2,
+   "sprite": "dog_pug2",
+   "work": "escola",
+   "casa": 50
+  },
+  {
+   "id": "johrancruyf",
+   "nome": "Johran",
+   "raca": "pitbull",
+   "trabalho": "policial",
+   "ep": 2,
+   "sprite": "dog_pitbull",
+   "work": "delegacia",
+   "casa": 51
+  },
+  {
+   "id": "marqueesssxx_",
+   "nome": "Giovanna",
+   "raca": "galgo russo",
+   "trabalho": "dona da floricultura",
+   "ep": 2,
+   "sprite": "dog_borzoi",
+   "work": "floricultura",
+   "casa": 52
+  },
+  {
+   "id": "medeirosvalentinatavares",
+   "nome": "Hanna",
+   "raca": "bull terrier",
+   "trabalho": "médica e cuidadora de animais",
+   "ep": 2,
+   "sprite": "dog_bullterrier",
+   "work": "praca",
+   "casa": 53
+  },
+  {
+   "id": "rafaelswaizergalle",
+   "nome": "Rafael",
+   "raca": "salsicha",
+   "trabalho": "professor",
+   "ep": 2,
+   "sprite": "dog_salsicha2",
+   "work": "escola",
+   "casa": 54
+  },
+  {
+   "id": "usuario80806",
+   "nome": "Usuário",
+   "raca": "vira-lata",
+   "trabalho": "fiscal da prefeitura (confere se todo mundo aparece)",
+   "ep": 2,
+   "sprite": "dog_caramelo2",
+   "work": "prefeitura",
+   "casa": 55
+  },
+  {
+   "id": "ww.rlsilvax",
+   "nome": "Wenderson",
+   "raca": "pastor alemão com vira-lata",
+   "trabalho": "padeiro",
+   "ep": 3,
+   "sprite": "dog_mix_padeiro",
+   "work": "padaria",
+   "casa": 56
+  }
+ ]
+}
