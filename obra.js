@@ -31,16 +31,17 @@ function painted(x, y, h, w = 90) { const el = document.createElement("div"); el
 // ---------- mundo ----------
 const L = await (await fetch("obra_layout.json?v=" + Date.now())).json();
 const [BW, BH] = L.size;
-tiles("obra2/grass", -2400, -600, 3600, 1800, 80, 80, 0);
+tiles("obra2/grass", -3000, -1200, 4200, 2800, 112, 112, 0);
 for (const [x0, x1, y] of L.roads_h) tiles("obra2/road_h", x0, y, x1, y + 28, 200, 28, 1);
 for (const [x, y0, y1] of L.roads_v) tiles("obra2/road_v", x, y0, x + 32, y1, 32, 200, 1);
 { const [px, py, pw, ph] = L.plaza; tiles("obra2/road_h", px, py, px + pw, py + ph, 200, 28, 1).style.borderRadius = "50%"; }
 for (const [x0, x1, y] of L.hedges_h) tiles("obra2/hedge_h", x0, y, x1, y + 22, 200, 22, 2);
 for (const [x, y0, y1] of L.hedges_v) tiles("obra2/hedge_v", x, y0, x + 22, y1, 22, 200, 2);
-for (const p of L.pieces) { const el = document.createElement("img"); el.src = `sprites/obra2/${p.k}.png`; el.draggable = false; el.className = "tile"; el.style.cssText = `left:${p.x}px;top:${p.y}px;width:${p.w}px;height:${p.h}px;z-index:${20000 + Math.round(p.y + p.h - 6)};image-rendering:pixelated`; world.appendChild(el); loads.push(new Promise((r) => { el.onload = r; el.onerror = () => { missing.add(p.k); r(); }; })); }
+const lampEls = [];
+for (const p of L.pieces) { const el = document.createElement("img"); el.src = `sprites/obra2/${p.k}.png`; if (p.k === "lamp") lampEls.push(el); el.draggable = false; el.className = "tile"; el.style.cssText = `left:${p.x}px;top:${p.y}px;width:${p.w}px;height:${p.h}px;z-index:${20000 + Math.round(p.y + p.h - 6)};image-rendering:pixelated`; world.appendChild(el); loads.push(new Promise((r) => { el.onload = r; el.onerror = () => { missing.add(p.k); r(); }; })); }
 const B = {}; const bTags = [];
 for (const [k, b] of Object.entries(L.buildings)) { B[k] = painted(b.x, b.y, b.h, b.w); bTags.push(tag(b.label, B[k], 1, k === "mansao" ? "#ffe27a" : k === "delegacia" ? "#cfe6ff" : "#fff6d8")); }
-const popTxt = wtext("POP. 0", 590, 975, 5, "#ffd24a", 40001);
+const popTxt = wtext("POP. 0", 590, 1016, 4, "#ffd24a", 40001);
 const lanterns = L.pieces.filter((p) => p.k === "lamp").map((p) => { const l = dot(16, 16, "rgba(255,200,90,0.35)"); l.pos = [p.x + 15, p.y + 22]; return l; });
 const smokes = []; for (const [cx, cy] of [[640, 70], [420, 150], [310, 540], [1000, 405]]) for (let k = 0; k < 4; k++) smokes.push({ d: dot(3, 3, "#f4f1ea"), cx, cy, k });
 const flies = []; for (let k = 0; k < 8; k++) flies.push({ d: dot(3, 3, ["#fff3a0", "#ffffff", "#ffb3d9"][k % 3]), k });
@@ -92,9 +93,10 @@ view.addEventListener("pointermove", (e) => { if (!ptrs.has(e.pointerId)) return
 const endPtr = (e) => { ptrs.delete(e.pointerId); if (ptrs.size < 2) pinch0 = null; if (ptrs.size === 0) dragging = false; };
 view.addEventListener("pointerup", endPtr); view.addEventListener("pointercancel", endPtr); view.addEventListener("pointerleave", endPtr);
 view.addEventListener("wheel", (e) => { e.preventDefault(); const ns = clamp(cam.s * (e.deltaY < 0 ? 1.12 : 0.9), 0.35, 5); const mx = (e.clientX - W / 2) / cam.s, my = (e.clientY - H / 2) / cam.s; cam.x += mx - (e.clientX - W / 2) / ns; cam.y += my - (e.clientY - H / 2) / ns; cam.s = ns; clampCam(); applyCam(); }, { passive: false });
-function clampCam() { cam.x = clamp(cam.x, -1600, 2800); cam.y = clamp(cam.y, -200, 1500); }
+function clampCam() { cam.x = clamp(cam.x, -1500, 2700); cam.y = clamp(cam.y, -100, 1450); }
 view.addEventListener("click", (e) => { if (moved > 8) return; const id = e.target.dataset && e.target.dataset.id; if (id) openCard(id); });
 function flyTo(x, y, s = 2.6) { fly = { x0: cam.x, y0: cam.y, s0: cam.s, x1: x, y1: y, s1: s, t: 0 }; }
+window.__fly = flyTo; window.__night = (on) => { $("#night").style.display = on ? "" : "none"; };
 
 // ---------- card / busca / compartilhar ----------
 const card = $("#card"); let current = null;
@@ -126,6 +128,7 @@ function frame(now) {
   spray.forEach((s) => { const k = ((t * 0.8 + s.k * 0.1) % 1); const a = (s.k / 10) * Math.PI * 2; s.d.set({ vis: vis(590, 470) ? 1 : 0, x: 590 + Math.cos(a) * k * 22, y: 440 - Math.sin(k * Math.PI) * 26 + k * 40, alpha: 1 - k * 0.7, z: 20530 }); });
   flies.forEach((f) => { const i = f.k; f.d.set({ x: cam.x + (Math.sin(t * 0.55 + i * 1.7) * 130 + Math.sin(t * 3.3 + i) * 7) / cam.s * 1.2, y: cam.y + (Math.cos(t * 0.42 + i * 2.3) * 220 + Math.sin(t * 4.1 + i * 0.5) * 6) / cam.s * 1.2, w: 3 / cam.s, h: (2 + Math.abs(Math.sin(t * 9 + i)) * 1.5) / cam.s, alpha: 0.95 }); });
   const hour = new Date().getHours(); const night = hour >= 18 || hour < 6; $("#night").style.opacity = night ? 0.45 : 0;
+  if (window.__lampNight !== night) { window.__lampNight = night; lampEls.forEach((el) => (el.src = `sprites/obra2/${night ? "lamp" : "lamp_off"}.png`)); }
   lanterns.forEach((l) => l.set({ vis: night && vis(l.pos[0], l.pos[1]) ? 1 : 0, x: l.pos[0], y: l.pos[1] + 7, w: 16 + Math.sin(t * 7 + l.pos[0]) * 2, h: 16 + Math.sin(t * 7 + l.pos[0]) * 2, alpha: 0.6, z: 58000 }));
   for (const d of dogs) {
     if (d.state === "idle") { d.wait -= dt; if (d.wait <= 0) { const to = pickTarget(d); const r = path(d.node, to); if (r && r.length > 1) { d.route = r.slice(1); d.state = "walk"; } else d.wait = 2; } }
