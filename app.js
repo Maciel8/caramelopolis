@@ -113,8 +113,8 @@ function flyTo(x, y, s = 2.6) { fly = { x0: cam.x, y0: cam.y, s0: cam.s, x1: x, 
 const card = $("#card"); let current = null;
 function openCard(id) { const d = dogs.find((k) => k.m.id === id); if (!d) return; current = d; $("#cPic").src = d.sp.el.src; $("#cNome").textContent = d.m.nome;
   $("#cSub").innerHTML = `<b>${d.m.raca}</b><br>${d.m.trabalho}<br>entrou no episódio ${d.m.ep}` + (d.m.casa === "mansao" ? "<br>mora na mansão" : d.m.casa === "rua" ? "<br>mora na rua principal" : `<br>lote nº ${d.m.casa + 1}`);
-  $("#cReel").href = DATA.episodios[d.m.ep] || DATA.episodios[DATA.episodio_atual]; card.classList.add("open"); d.bark = 1.2; flyTo(d.x, d.y, Math.max(cam.s, 2.6)); }
-$("#cardClose").onclick = () => card.classList.remove("open");
+  $("#cReel").href = DATA.episodios[d.m.ep] || DATA.episodios[DATA.episodio_atual]; card.classList.add("open"); document.body.classList.add("cardOpen"); d.bark = 1.2; flyTo(d.x, d.y, Math.max(cam.s, 2.6)); }
+$("#cardClose").onclick = () => { card.classList.remove("open"); document.body.classList.remove("cardOpen"); };
 $("#cCasa").onclick = () => { if (!current) return; flyTo(current.hs.st.x, current.hs.st.y - 20, 2.6); current.hs.bounce = 1; };
 const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 const hits = $("#hits"), search = $("#search");
@@ -146,12 +146,12 @@ function frame(now) {
     if (d.state === "idle") { d.wait -= dt; if (d.wait <= 0) { [d.tx, d.ty] = pickTarget(d); d.state = "walk"; } }
     else { const dx = d.tx - d.x, dy = d.ty - d.y; const dist = Math.hypot(dx, dy); if (dist < 2) { d.state = "idle"; d.wait = 1.5 + Math.random() * 5; } else { const st = Math.min(dist, d.speed * dt); d.x += dx / dist * st; d.y += dy / dist * st; if (Math.abs(dx) > 1) d.flip = dx < 0 ? 1 : 0; } }
     if (d.bark > 0) d.bark -= dt;
-    const on = vis(d.x, d.y); if (!on) { d.sp.set({ vis: 0 }); d.tg.show(0); d.ht.show(0); continue; }
+    const hb = d.hs.bounce; if (hb > 0) { d.hs.bounce = Math.max(0, hb - dt / 1.2); d.hs.set({ bob: Math.abs(Math.sin(hb * Math.PI * 3)) * 10 }); } else if (d.hs.st.bob) d.hs.set({ bob: 0 });
+    d.ht.show(!vis(d.hs.st.x, d.hs.st.y) ? 0 : zoomedOut ? (d.m.casa === "mansao" ? 1 : 0) : 1);
+    const on = vis(d.x, d.y); if (!on) { d.sp.set({ vis: 0 }); d.tg.show(0); continue; }
     const walking = d.state === "walk"; const bark = d.bark > 0;
     d.sp.set({ vis: 1, x: d.x, y: d.y, flip: d.flip, bob: walking ? Math.abs(Math.sin(t * 14 + d.ph)) * 3 : bark ? Math.abs(Math.sin(t * 16)) * 4 : Math.abs(Math.sin(t * 2.2 + d.ph)) * 0.6, sy: bark ? 1 + Math.abs(Math.sin(t * 16)) * 0.1 : 1 + Math.sin(t * 3 + d.ph) * 0.04, rot: bark ? Math.sin(t * 22) * 5 : 0 });
     d.tg.show(zoomedOut ? 0 : 1);
-    const hb = d.hs.bounce; if (hb > 0) { d.hs.bounce = Math.max(0, hb - dt / 1.2); d.hs.set({ bob: Math.abs(Math.sin(hb * Math.PI * 3)) * 10 }); } else if (d.hs.st.bob) d.hs.set({ bob: 0 });
-    d.ht.show(zoomedOut ? (d.m.casa === "mansao" ? 1 : 0) : 1);
   }
   requestAnimationFrame(frame);
 }
