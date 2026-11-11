@@ -158,7 +158,7 @@ M = [
   ("ders.onzin", "Ders", "vira-lata", "eleitor (votou no Diogzin)", 3, False),
 ]
 CASA = {"racadodia": "mansao", "enzo_zz100": "rua"}
-EPS = {1: "https://www.instagram.com/caramelopolis.br/reel/DfkGdM9q87-/", 2: "https://www.instagram.com/caramelopolis.br/reel/Dfk8H-NK3Sn/", 3: "https://www.instagram.com/caramelopolis.br/reel/DfmXMleK4Jw/", 4: "https://www.instagram.com/caramelopolis.br/reel/DfmXMleK4Jw/"}
+EPS = {1: "https://www.instagram.com/caramelopolis.br/reel/DfkGdM9q87-/", 2: "https://www.instagram.com/caramelopolis.br/reel/Dfk8H-NK3Sn/", 3: "https://www.instagram.com/caramelopolis.br/reel/DfmXMleK4Jw/", 4: "https://www.instagram.com/caramelopolis.br/reel/DfngK8Wqvo-/"}
 URNA = {"aberta": False, "fecha": "fechou no ep. 4", "parcial": [["LILY", 4], ["DAVI", 2], ["DIOGZIN", 1], ["RONALDO", 0], ["LUCAS", 0]], "prefeito": "LILY"}  # contagem final 11/11 18:45
 
 lote = 0; out = []
