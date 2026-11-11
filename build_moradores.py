@@ -11,11 +11,11 @@ SP = {"pastor alemão": "dog_pastor", "husky": "dog_husky_plain", "pitbull": "do
       "dálmata": "dog_dalmata", "cane corso": "dog_canecorso", "doberman": "dog_doberman", "dogue alemão": "dog_dogue", "kangal": "dog_kangal",
       "boerboel": "dog_boerboel", "mastim inglês": "dog_mastim", "são bernardo": "dog_saobernardo", "greyhound": "dog_greyhound", "galgo inglês": "dog_greyhound",
       "boiadeiro australiano": "dog_boiadeiro", "bull terrier": "dog_bullterrier",
-      "cão-lobo": "dog_caolobo", "braco alemão": "dog_braco", "bulldog francês": "dog_bulldogfrances", "bulldog": "dog_bulldog", "buldogue": "dog_bulldog", "border collie": "dog_bordercollie", "spitz alemão": "dog_spitz", "mistura de 5 raças": "dog_pastor", "caramelo": "dog_caramelo2", "caramelo médio": "dog_caramelo2", "salsicha preto e marrom": "dog_salsicha_longo", "salsicha marrom": "dog_salsicha2", "husky siberiano": "dog_husky_plain"}
+      "cão-lobo": "dog_caolobo", "samoieda": "dog_samoieda", "pitbull caramela": "dog_pitbull", "pastor belga": "dog_malinois", "boxer": "dog_boxer", "cocker spaniel": "dog_cocker", "pitbull com poodle": "dog_pitbull", "cristado chinês": "dog_cristado", "dogo argentino": "dog_dogo", "fila brasileiro": "dog_fila", "braco alemão": "dog_braco", "bulldog francês": "dog_bulldogfrances", "bulldog": "dog_bulldog", "buldogue": "dog_bulldog", "border collie": "dog_bordercollie", "spitz alemão": "dog_spitz", "mistura de 5 raças": "dog_pastor", "caramelo": "dog_caramelo2", "caramelo médio": "dog_caramelo2", "salsicha preto e marrom": "dog_salsicha_longo", "salsicha marrom": "dog_salsicha2", "husky siberiano": "dog_husky_plain"}
 # onde cada trabalho acontece
 def work_of(trabalho):
     t = trabalho.lower()
-    for k, w in [("sargent", "delegacia"), ("carcereir", "delegacia"), ("detetive", "delegacia"), ("urna", "palanque"), ("trânsito", "praca"), ("confeit", "padaria"), ("moleir", "padaria"), ("cafeteria", "padaria"), ("pastel", "padaria"), ("borrach", "oficina"), ("assessor", "prefeitura"), ("presidente", "prefeitura"), ("vereador", "prefeitura"), ("contador", "prefeitura"), ("bancári", "padaria"), ("aluno", "escola"), ("pediatra", "praca"), ("cirurg", "praca"), ("bope", "delegacia"), ("polic", "delegacia"), ("comandante", "delegacia"), ("forças", "delegacia"), ("guard", "delegacia"), ("segur", "delegacia"),
+    for k, w in [("exército", "delegacia"), ("fronteira", "delegacia"), ("montanha", "delegacia"), ("ladr", "delegacia"), ("criminosa", "delegacia"), ("restaurante", "padaria"), ("açoug", "padaria"), ("petiscaria", "padaria"), ("loja", "padaria"), ("banco", "padaria"), ("síndic", "prefeitura"), ("eleitor", "palanque"), ("mansão", "mansao"), ("cavador", "praca"), ("sargent", "delegacia"), ("carcereir", "delegacia"), ("detetive", "delegacia"), ("urna", "palanque"), ("trânsito", "praca"), ("confeit", "padaria"), ("moleir", "padaria"), ("cafeteria", "padaria"), ("pastel", "padaria"), ("borrach", "oficina"), ("assessor", "prefeitura"), ("presidente", "prefeitura"), ("vereador", "prefeitura"), ("contador", "prefeitura"), ("bancári", "padaria"), ("aluno", "escola"), ("pediatra", "praca"), ("cirurg", "praca"), ("bope", "delegacia"), ("polic", "delegacia"), ("comandante", "delegacia"), ("forças", "delegacia"), ("guard", "delegacia"), ("segur", "delegacia"),
                  ("padeir", "padaria"), ("padaria", "padaria"), ("professor", "escola"), ("diretor", "escola"), ("coorden", "escola"),
                  ("mecânic", "oficina"), ("floricult", "floricultura"), ("candidat", "palanque"), ("investidor", "mansao"),
                  ("fiscal", "prefeitura"), ("corretor", "prefeitura"), ("advogad", "prefeitura"), ("médic", "praca"), ("enferm", "praca"), ("veterin", "praca"),
@@ -118,10 +118,48 @@ M = [
   ("fabzz.2014", "Fabzz", "buldogue", "técnico de celular", 3, False),
   ("raphael._.sense", "Raphael", "border collie", "contador", 3, False),
   ("matheusjosealmeidadasilva", "Matheus", "husky siberiano", "capitão do time de futebol", 3, False),
+  # ---- comentaram no ep. 3 (coleta 11/11 18:45); entram no site e aparecem no ep. 4 ----
+  ("jhennethy", "Jhenne", "husky", "padeiro de pão doce", 3, False),
+  ("helo_bf22", "Helô", "samoieda", "relações públicas (pediu 8 vezes)", 3, False),
+  ("mellane_lemos", "Mell", "pitbull caramela", "cabeleireira", 3, False),
+  ("br.y001", "Bry", "pastor belga", "vice-capitão do BOPE", 3, False),
+  ("alexandre_do_balacubacu_77", "Alexandre", "pug", "dono da loja de ração", 3, False),
+  ("arthurdealbergariado", "Arthur A.", "pitbull", "mecânico de bicicleta", 3, False),
+  ("bento62322", "Bento", "border collie", "açougueiro", 3, False),
+  ("kauefernando96", "Kauê", "vira-lata", "síndico do bairro novo", 3, False),
+  ("mariah_claraoliver", "Mariah", "boxer", "dona da academia", 3, False),
+  ("buiu_zim_stz", "Buiu", "rottweiler", "ladrão (o primeiro crime da cidade)", 3, False),
+  ("katy_bjj123", "Katy", "dálmata", "médica do posto", 3, False),
+  ("leonarz_dzx", "Leo", "golden", "dono do restaurante", 3, False),
+  ("marianasilva_morais", "Mariana", "vira-lata", "moradora", 3, False),
+  ("ivana_dog_love", "Ivana", "vira-lata", "fotógrafa (já tinha foto de perfil)", 3, False),
+  ("tonetmurilo", "Murilo", "caramelo", "mecânico de moto", 3, False),
+  ("yuri_souzap1", "Rogério", "pug", "engenheiro de aeronáutica (sem avião)", 3, False),
+  ("izabellypicoli", "Nevasca", "husky", "cavadora oficial", 3, False),
+  ("leocorreaptuciniki", "Léo", "pastor alemão", "agricultor", 3, False),
+  ("anthony_amaral02", "Anthony", "pastor alemão", "morador", 3, False),
+  ("anaclaradosanjos.sousa", "Ana Clara", "cocker spaniel", "psicóloga", 3, False),
+  ("ismaelnatan77", "Ismael", "dálmata", "bombeiro (e candidato a presidente)", 3, False),
+  ("_luan_gabriel2012", "Luanzim", "vira-lata", "morador", 3, False),
+  ("luccatrindade12", "Lucca", "pitbull com poodle", "morador", 3, False),
+  ("dnzin77_x", "Dnzin", "pinscher", "pai de família", 3, False),
+  ("alemao_z.x", "Alemão", "pastor malinois", "dono do banco", 3, False),
+  ("hxzeth", "Zeth", "cristado chinês", "chefe da organização criminosa", 3, False),
+  ("joaof_alcantara", "João F.", "vira-lata", "morador", 3, False),
+  ("adarascherer", "Adara", "border collie", "tenista", 3, False),
+  ("joaolucaspereira08", "João Lucas", "dogo argentino", "exército", 3, False),
+  ("zx_brazz", "Brazz", "kangal", "policial de fronteira", 3, False),
+  ("gabrielholanda_reco", "Gabriel", "kangal", "dono da petiscaria", 3, False),
+  ("pvd_mistermax", "Pietro", "vira-lata", "bombeiro voluntário", 3, False),
+  ("thiaguinho.castro16", "Thiaguinho", "são bernardo", "policial de montanha", 3, False),
+  ("luiz_fernando_boiadeiroo", "Lili", "pastor alemão", "médico de plantão", 3, False),
+  ("luiz0sant", "Luiz S.", "fila brasileiro", "caçador (de osso)", 3, False),
+  ("vih.vieira13", "Vitória", "spitz alemão", "quer a mansão com piscina e a prefeitura", 3, False),
+  ("ders.onzin", "Ders", "vira-lata", "eleitor (votou no Diogzin)", 3, False),
 ]
 CASA = {"racadodia": "mansao", "enzo_zz100": "rua"}
-EPS = {1: "https://www.instagram.com/caramelopolis.br/reel/DfkGdM9q87-/", 2: "https://www.instagram.com/caramelopolis.br/reel/Dfk8H-NK3Sn/", 3: "https://www.instagram.com/caramelopolis.br/reel/DfmXMleK4Jw/"}
-URNA = {"aberta": True, "fecha": "no ep. 4", "parcial": [["LILY", 3], ["DAVI", 2], ["DIOGZIN", 0], ["RONALDO", 0], ["LUCAS", 0]]}  # votos contados em 11/11 09:30
+EPS = {1: "https://www.instagram.com/caramelopolis.br/reel/DfkGdM9q87-/", 2: "https://www.instagram.com/caramelopolis.br/reel/Dfk8H-NK3Sn/", 3: "https://www.instagram.com/caramelopolis.br/reel/DfmXMleK4Jw/", 4: "https://www.instagram.com/caramelopolis.br/reel/DfmXMleK4Jw/"}
+URNA = {"aberta": False, "fecha": "fechou no ep. 4", "parcial": [["LILY", 4], ["DAVI", 2], ["DIOGZIN", 1], ["RONALDO", 0], ["LUCAS", 0]], "prefeito": "LILY"}  # contagem final 11/11 18:45
 
 lote = 0; out = []
 for row in M:
@@ -129,6 +167,6 @@ for row in M:
     casa = CASA.get(h)
     if casa is None: casa = lote; lote += 1
     out.append({"id": h, "nome": nome, "raca": raca, "trabalho": trab, "ep": ep, "sprite": SP.get(raca, "dog_caramelo2"), "work": work_of(trab), "casa": casa, "video": video})
-data = {"atualizado": datetime.date.today().isoformat(), "episodio_atual": 3, "episodios": EPS, "urna": URNA, "moradores": out}
+data = {"atualizado": datetime.date.today().isoformat(), "episodio_atual": 4, "episodios": EPS, "urna": URNA, "moradores": out}
 json.dump(data, open("moradores.json", "w"), ensure_ascii=False, indent=1)
 print(len(out), "moradores,", lote, "lotes")

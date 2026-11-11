@@ -39,7 +39,7 @@ for (let x = -240; x <= 240; x += 60) { if (x > -70 && x < 70) continue; sprite(
 const lanterns = [];
 for (const [x, y] of [[-142, -232], [142, -232], [-142, -108], [142, -108], [-70, -60], [70, -60], [-60, -700], [60, -700], [-60, -1000], [60, -1000], [-60, -1300], [60, -1300], [-60, -1600], [60, -1600], [-110, -1960], [110, -1960]]) { sprite("lantern", 40, { x, y }); lanterns.push(dot(14, 14, "rgba(255,200,90,0.35)")); lanterns[lanterns.length - 1].pos = [x, y - 24]; }
 const trees = [];
-for (let i = 0; i < 150; i++) { const side = i % 2 ? 1 : -1; trees.push(sprite("tree2", 46 + rnd(i + 5) * 16, { x: side * (300 + rnd(i + 3) * 1000), y: -3200 + rnd(i + 4) * 4000 })); }
+for (let i = 0; i < 150; i++) { const side = i % 2 ? 1 : -1; const ty = -3200 + rnd(i + 4) * 4000; trees.push(sprite("tree2", 46 + rnd(i + 5) * 16, { x: side * ((ty > -2200 && ty < -600 ? 450 : 300) + rnd(i + 3) * 1000), y: ty })); }
 for (let i = 0; i < 14; i++) { const side = i % 2 ? 1 : -1; trees.push(sprite("tree2", 50 + rnd(i + 50) * 12, { x: side * (265 + rnd(i + 51) * 90), y: 110 + rnd(i + 52) * 500 })); }
 for (let i = 0; i < 12; i++) { const side = i % 2 ? 1 : -1; trees.push(sprite("tree2", 50 + rnd(i + 90) * 12, { x: side * (120 + rnd(i + 91) * 160), y: -2120 - rnd(i + 92) * 300 })); }
 const flowers = [];
@@ -61,14 +61,15 @@ const smokes = []; for (const [cx, cy] of [[-104, -352], [-110, -640], [136, -40
 const flies = []; for (let k = 0; k < 8; k++) flies.push({ d: dot(3, 3, ["#fff3a0", "#ffffff", "#ffb3d9"][k % 3]), k });
 const HK = ["house_a", "house_b", "house_c"];
 function lotPos(i) { if (i < 60) { const col = i % 4, row = Math.floor(i / 4); return [[-200, -110, 110, 200][col] + (rnd(i + 9) - 0.5) * 8, -700 - row * 84 + (rnd(i + 10) - 0.5) * 10]; }
-  const j = i - 60; const col = j % 2, row = Math.floor(j / 2); return [[-290, 290][col] + (rnd(i + 9) - 0.5) * 8, -700 - row * 84 + (rnd(i + 10) - 0.5) * 10]; }
+  const j = i - 60; const col = j % 4, row = Math.floor(j / 4); return [[-300, -390, 300, 390][col] + (rnd(i + 9) - 0.5) * 8, -700 - row * 84 + (rnd(i + 10) - 0.5) * 10]; }
 
 // ---------- moradores ----------
 const DATA = await (await fetch("moradores.json?v=" + Date.now())).json();
 const M = DATA.moradores; const dogs = [];
 $("#nMor").textContent = M.length; popTxt.textContent = `POP. ${M.length}`;
 $("#ctaEntrar").href = DATA.episodios[DATA.episodio_atual];
-const u = DATA.urna; $("#urna").innerHTML = (u.aberta ? `URNA ABERTA · fecha ${u.fecha}<br>` : `URNA FECHADA<br>`) + u.parcial.filter((p) => p[1] > 0).map((p) => `<b>${p[0]}</b> ${p[1]}`).join(" · ") + ` · vota comentando no último episódio`;
+const u = DATA.urna; $("#urna").innerHTML = (u.aberta ? `URNA ABERTA · fecha ${u.fecha}<br>` : `URNA FECHADA · PREFEITA: <b>${u.prefeito}</b><br>`) + u.parcial.filter((p) => p[1] > 0).map((p) => `<b>${p[0]}</b> ${p[1]}`).join(" · ") + (u.aberta ? ` · vota comentando no último episódio` : ``);
+if (u.prefeito) $("#nPref").textContent = u.prefeito;
 const houseOf = {}; const enzoHouse = sprite("house_c", 66, { x: 125, y: -442 });
 for (const m of M) {
   let hs, door;
@@ -105,7 +106,7 @@ view.addEventListener("pointermove", (e) => { if (!ptrs.has(e.pointerId)) return
 const endPtr = (e) => { ptrs.delete(e.pointerId); if (ptrs.size < 2) pinch0 = null; if (ptrs.size === 0) dragging = false; };
 view.addEventListener("pointerup", endPtr); view.addEventListener("pointercancel", endPtr); view.addEventListener("pointerleave", endPtr);
 view.addEventListener("wheel", (e) => { e.preventDefault(); const ns = clamp(cam.s * (e.deltaY < 0 ? 1.12 : 0.9), 0.45, 5); const mx = (e.clientX - W / 2) / cam.s, my = (e.clientY - H / 2) / cam.s; cam.x += mx - (e.clientX - W / 2) / ns; cam.y += my - (e.clientY - H / 2) / ns; cam.s = ns; clampCam(); applyCam(); }, { passive: false });
-function clampCam() { cam.x = clamp(cam.x, -700, 700); cam.y = clamp(cam.y, -2300, 300); }
+function clampCam() { cam.x = clamp(cam.x, -800, 800); cam.y = clamp(cam.y, -2500, 300); }
 view.addEventListener("click", (e) => { if (moved > 8) return; const id = e.target.dataset && e.target.dataset.id; if (id) openCard(id); });
 function flyTo(x, y, s = 2.6) { fly = { x0: cam.x, y0: cam.y, s0: cam.s, x1: x, y1: y, s1: s, t: 0 }; }
 
