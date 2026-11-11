@@ -12,8 +12,8 @@
 <style>
   @font-face { font-family: PS2P; src: url(fonts/PressStart2P.ttf); }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html, body { margin: 0; height: 100%; overflow: hidden; background: #5d9a3f; font-family: PS2P, monospace; color: #fff8e8; touch-action: none; }
-  #view { position: fixed; inset: 0; overflow: hidden; background: #5d9a3f; cursor: grab; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #4b6e2b; font-family: PS2P, monospace; color: #fff8e8; touch-action: none; }
+  #view { position: fixed; inset: 0; overflow: hidden; background: #4b6e2b; cursor: grab; }
   #world { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; image-rendering: pixelated; }
   #world img, .tile { image-rendering: pixelated; image-rendering: crisp-edges; }
   .tile { position: absolute; }
@@ -69,16 +69,16 @@
   <div id="title">CARAMELÓPOLIS</div>
   <div class="board"><div><div class="lab">MORADORES</div><div class="num" id="nMor">0</div></div><div class="dot">·</div><div><div class="lab red">PREFEITO</div><div class="num" id="nPref">?</div></div></div>
   <div id="urna"></div>
-  <div id="hint">arrasta pra passear · pinça pra dar zoom · toca num cachorro</div>
+  <div id="hint">arrasta pra passear · pinça pra dar zoom · toca num cachorro<br>achou sua casa? tira print e posta no story marcando @caramelopolis.br</div>
 </div>
 <div id="bottom">
   <div id="hits"></div>
   <input id="search" placeholder="🔎 acha a sua casa: digita seu nome" autocomplete="off">
   <div class="row"><a class="btn green" id="ctaEntrar" target="_blank" rel="noopener">AINDA NÃO MORA AQUI? 🐕</a><button class="btn dark" id="btnShare">COMPARTILHAR</button></div>
 </div>
-<div id="card"><button class="close" id="cardClose">✕</button><div class="head"><div class="pic"><img id="cPic" alt=""></div><div><h2 id="cNome"></h2><div class="sub" id="cSub"></div></div></div><div class="actions"><a class="btn" id="cReel" target="_blank" rel="noopener">VER O EPISÓDIO</a><button class="btn green" id="cCasa">IR PRA CASA</button></div></div>
+<div id="card"><button class="close" id="cardClose">✕</button><div class="head"><div class="pic"><img id="cPic" alt=""></div><div><h2 id="cNome"></h2><div class="sub" id="cSub"></div></div></div><div class="actions"><a class="btn" id="cReel" target="_blank" rel="noopener">VER O EPISÓDIO</a><button class="btn green" id="cCasa">IR PRA CASA</button></div><div class="sub" style="margin-top:10px;text-align:center">📸 tira print e posta no story marcando <b>@caramelopolis.br</b></div></div>
 <div id="toast"></div>
 <div id="loading"><img src="sprites/dog_caramelo2_front.png" alt=""><div>construindo a cidade…</div></div>
-<script type="module" src="app.js"></script>
+<script type="module" src="obra.js"></script>
 </body>
 </html>
