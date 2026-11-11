@@ -112,7 +112,7 @@ function flyTo(x, y, s = 2.6) { fly = { x0: cam.x, y0: cam.y, s0: cam.s, x1: x, 
 // ---------- card / busca / compartilhar ----------
 const card = $("#card"); let current = null;
 function openCard(id) { const d = dogs.find((k) => k.m.id === id); if (!d) return; current = d; $("#cPic").src = d.sp.el.src; $("#cNome").textContent = d.m.nome;
-  $("#cSub").innerHTML = `<b>${d.m.raca}</b><br>${d.m.trabalho}<br>entrou no episódio ${d.m.ep}` + (d.m.casa === "mansao" ? "<br>mora na mansão" : d.m.casa === "rua" ? "<br>mora na rua principal" : `<br>lote nº ${d.m.casa + 1}`);
+  $("#cSub").innerHTML = `<b>${d.m.raca}</b><br>${d.m.trabalho}<br>` + (d.m.video === false ? `comentou no episódio ${d.m.ep} · entra no vídeo no próximo` : `entrou no episódio ${d.m.ep}`) + (d.m.casa === "mansao" ? "<br>mora na mansão" : d.m.casa === "rua" ? "<br>mora na rua principal" : `<br>lote nº ${d.m.casa + 1}`);
   $("#cReel").href = DATA.episodios[d.m.ep] || DATA.episodios[DATA.episodio_atual]; card.classList.add("open"); document.body.classList.add("cardOpen"); d.bark = 1.2; flyTo(d.x, d.y, Math.max(cam.s, 2.6)); }
 $("#cardClose").onclick = () => { card.classList.remove("open"); document.body.classList.remove("cardOpen"); };
 $("#cCasa").onclick = () => { if (!current) return; flyTo(current.hs.st.x, current.hs.st.y - 20, 2.6); current.hs.bounce = 1; };
