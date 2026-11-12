@@ -40,7 +40,7 @@ for (const [x, y0, y1] of L.hedges_v) tiles("obra2/hedge_v", x, y0, x + 22, y1, 
 const lampEls = [];
 for (const p of L.pieces) { const el = document.createElement("img"); el.src = `sprites/obra2/${p.k}.png`; if (p.k === "lamp") lampEls.push(el); el.draggable = false; el.className = "tile"; el.style.cssText = `left:${p.x}px;top:${p.y}px;width:${p.w}px;height:${p.h}px;z-index:${20000 + Math.round(p.y + p.h - 6)};image-rendering:pixelated`; world.appendChild(el); loads.push(new Promise((r) => { el.onload = r; el.onerror = () => { missing.add(p.k); r(); }; })); }
 const B = {}; const bTags = [];
-for (const [k, b] of Object.entries(L.buildings)) { B[k] = painted(b.x, b.y, b.h, b.w); bTags.push(tag(b.label, B[k], 1, k === "mansao" ? "#ffe27a" : k === "delegacia" ? "#cfe6ff" : "#fff6d8")); }
+for (const [k, b] of Object.entries(L.buildings)) { B[k] = painted(b.x, b.y, b.h, b.w); bTags.push(tag(b.label, B[k], 1, k === "mansao" || k === "casa_speed" || k === "sede" ? "#ffe27a" : k === "delegacia" ? "#cfe6ff" : k === "vila_gatos" ? "#ff8a7a" : "#fff6d8")); }
 const popTxt = wtext("POP. 0", 590, 1016, 4, "#ffd24a", 40001);
 const lanterns = [...L.pieces.filter((p) => p.k === "lamp").map((p) => [p.x + 15, p.y + 22]), ...(L.glows || [])].map(([x, y]) => { const l = dot(16, 16, "rgba(255,200,90,0.35)"); l.pos = [x, y]; return l; });
 const smokes = []; for (const [cx, cy] of [[640, 70], [420, 150], [310, 540], [1000, 405]]) for (let k = 0; k < 4; k++) smokes.push({ d: dot(3, 3, "#f4f1ea"), cx, cy, k });
@@ -57,7 +57,12 @@ function snap(x, y) { let best = null; for (const s of segs) { let px, py; if (s
 function addPoint(x, y) { const b = snap(x, y); b.s.pts.add(Math.round(b.s.t === "h" ? b.px : b.py)); return [Math.round(b.px), Math.round(b.py)]; }
 const DATA = await (await fetch("moradores.json?v=" + Date.now())).json();
 const M = DATA.moradores; const lots = L.lots.slice(); let li = 0; const plan = [];
-for (const m of M) { let hs, door; if (m.casa === "mansao") { const b = L.buildings.mansao; hs = B.mansao; door = addPoint(b.x, b.y + 8); } else { const [x, y, h, w] = lots[li % lots.length]; li++; hs = painted(x, y, h, w); door = addPoint(x, y + 8); } plan.push({ m, hs, door }); }
+const catLots = (L.cat_lots || []).slice(); let ci = 0;
+for (const m of M) { let hs, door;
+  if (typeof m.casa === "string" && L.buildings[m.casa]) { const b = L.buildings[m.casa]; hs = B[m.casa]; door = addPoint(b.x, b.y + 8); }
+  else if (m.especie === "gato" && catLots.length) { const [x, y, h, w] = catLots[ci % catLots.length]; ci++; hs = painted(x, y, h, w); door = addPoint(x, y + 8); }
+  else { const [x, y, h, w] = lots[li % lots.length]; li++; hs = painted(x, y, h, w); door = addPoint(x, y + 8); }
+  plan.push({ m, hs, door }); }
 const WORK = {}; for (const [k, [x, y]] of Object.entries(L.points)) WORK[k] = addPoint(x, y);
 for (const s of segs) { const ps = [...s.pts].sort((a, b) => a - b); for (let i = 0; i + 1 < ps.length; i++) { const A = s.t === "h" ? nid(ps[i], s.c) : nid(s.c, ps[i]), Bk = s.t === "h" ? nid(ps[i + 1], s.c) : nid(s.c, ps[i + 1]); const d = ps[i + 1] - ps[i]; if (d <= 0) continue; adj.get(A).push([Bk, d]); adj.get(Bk).push([A, d]); } }
 const keyOf = ([x, y]) => `${Math.round(x)},${Math.round(y)}`;
@@ -78,7 +83,7 @@ plan.forEach(({ m, hs, door }, i) => {
   dogs.push({ m, sp, hs, ht, door, work: wk, tg: tag(m.nome.toUpperCase(), sp, 2, m.casa === "mansao" ? "#ffe27a" : "#fff8e8"), x: door[0], y: door[1], node: keyOf(door), route: [], state: "idle", wait: 1 + rnd(i * 3 + 1) * 5, speed: 16 + rnd(i + 77) * 10, flip: 0, ph: rnd(i + 5) * 6, bark: 0 });
 });
 const PLACES = ["praca", "mercado", "lago", "parque", "coreto", "biblioteca", "palanque"];
-function pickTarget(d) { const r = Math.random(); let p; if (r < 0.3) p = d.work; else if (r < 0.55) p = d.door; else if (r < 0.8) p = WORK[PLACES[Math.floor(Math.random() * PLACES.length)]]; else { const n = nodes.get(nodeKeys[Math.floor(Math.random() * nodeKeys.length)]); p = [n.x, n.y]; } return keyOf(p); }
+function pickTarget(d) { const r = Math.random(); let p; if (r < 0.3) p = d.work; else if (r < 0.55) p = d.door; else if (r < 0.8 && d.m.especie !== "gato") p = WORK[PLACES[Math.floor(Math.random() * PLACES.length)]]; else { const nb = adj.get(d.node) || []; if (nb.length && Math.random() < 0.6) return nb[Math.floor(Math.random() * nb.length)][0]; const n = nodes.get(nodeKeys[Math.floor(Math.random() * nodeKeys.length)]); p = [n.x, n.y]; } return keyOf(p); }
 
 // ---------- câmera ----------
 let W = innerWidth, H = innerHeight; const cam = { x: 588, y: 540, s: Math.max(0.6, Math.min(W / 1200, 1.6)) };
@@ -93,7 +98,7 @@ view.addEventListener("pointermove", (e) => { if (!ptrs.has(e.pointerId)) return
 const endPtr = (e) => { ptrs.delete(e.pointerId); if (ptrs.size < 2) pinch0 = null; if (ptrs.size === 0) dragging = false; };
 view.addEventListener("pointerup", endPtr); view.addEventListener("pointercancel", endPtr); view.addEventListener("pointerleave", endPtr);
 view.addEventListener("wheel", (e) => { e.preventDefault(); const ns = clamp(cam.s * (e.deltaY < 0 ? 1.12 : 0.9), 0.35, 5); const mx = (e.clientX - W / 2) / cam.s, my = (e.clientY - H / 2) / cam.s; cam.x += mx - (e.clientX - W / 2) / ns; cam.y += my - (e.clientY - H / 2) / ns; cam.s = ns; clampCam(); applyCam(); }, { passive: false });
-function clampCam() { cam.x = clamp(cam.x, -1500, 2700); cam.y = clamp(cam.y, -100, 1450); }
+function clampCam() { cam.x = clamp(cam.x, -1500, 2700); cam.y = clamp(cam.y, -520, 1450); }
 view.addEventListener("click", (e) => { if (moved > 8) return; const id = e.target.dataset && e.target.dataset.id; if (id) openCard(id); });
 function flyTo(x, y, s = 2.6) { fly = { x0: cam.x, y0: cam.y, s0: cam.s, x1: x, y1: y, s1: s, t: 0 }; }
 window.__fly = flyTo; window.__night = (on) => { $("#night").style.display = on ? "" : "none"; };
@@ -101,7 +106,7 @@ window.__fly = flyTo; window.__night = (on) => { $("#night").style.display = on 
 // ---------- card / busca / compartilhar ----------
 const card = $("#card"); let current = null;
 function openCard(id) { const d = dogs.find((k) => k.m.id === id); if (!d) return; current = d; $("#cPic").src = d.sp.el.src; $("#cNome").textContent = d.m.nome;
-  $("#cSub").innerHTML = `<b>${d.m.raca}</b><br>${d.m.trabalho}<br>` + (d.m.video === false ? `comentou no episódio ${d.m.ep} · entra no vídeo no próximo` : `entrou no episódio ${d.m.ep}`) + (d.m.casa === "mansao" ? "<br>mora na mansão" : "");
+  $("#cSub").innerHTML = `<b>${d.m.raca}</b><br>${d.m.trabalho}<br>` + (d.m.video === false ? `comentou no episódio ${d.m.ep} · entra no vídeo no próximo` : `entrou no episódio ${d.m.ep}`) + (d.m.casa === "casa_speed" ? "<br>mora na casa gigante" : d.m.casa === "mansao" ? "<br>mora na mansão" : d.m.especie === "gato" ? "<br>mora na Vila dos Gatos" : "");
   $("#cReel").href = DATA.episodios[d.m.ep] || DATA.episodios[DATA.episodio_atual]; card.classList.add("open"); document.body.classList.add("cardOpen"); d.bark = 1.2; flyTo(d.x, d.y, Math.max(cam.s, 2.4)); }
 $("#cardClose").onclick = () => { card.classList.remove("open"); document.body.classList.remove("cardOpen"); };
 $("#cCasa").onclick = () => { if (!current) return; flyTo(current.hs.st.x, current.hs.st.y - 30, 2.4); current.hs.bounce = 1; };
@@ -131,7 +136,7 @@ function frame(now) {
   if (window.__lampNight !== night) { window.__lampNight = night; lampEls.forEach((el) => (el.src = `sprites/obra2/${night ? "lamp" : "lamp_off"}.png`)); }
   lanterns.forEach((l) => l.set({ vis: night && vis(l.pos[0], l.pos[1]) ? 1 : 0, x: l.pos[0], y: l.pos[1] + 7, w: 16 + Math.sin(t * 7 + l.pos[0]) * 2, h: 16 + Math.sin(t * 7 + l.pos[0]) * 2, alpha: 0.6, z: 58000 }));
   for (const d of dogs) {
-    if (d.state === "idle") { d.wait -= dt; if (d.wait <= 0) { const to = pickTarget(d); const r = path(d.node, to); if (r && r.length > 1) { d.route = r.slice(1); d.state = "walk"; } else d.wait = 2; } }
+    if (d.state === "idle") { d.wait -= dt; if (d.wait <= 0) { const to = pickTarget(d); const r = path(d.node, to); if (r && r.length > 1) { d.route = r.slice(1); d.state = "walk"; } else { const nb = adj.get(d.node) || []; if (nb.length) { d.route = [nb[Math.floor(Math.random() * nb.length)][0]]; d.state = "walk"; } else d.wait = 2; } } }
     else { const nk = d.route[0]; const n = nodes.get(nk); const dx = n.x - d.x, dy = n.y - d.y; const dist = Math.hypot(dx, dy); if (dist < 1.5) { d.x = n.x; d.y = n.y; d.node = nk; d.route.shift(); if (!d.route.length) { d.state = "idle"; d.wait = 1.5 + Math.random() * 6; } } else { const st = Math.min(dist, d.speed * dt); d.x += dx / dist * st; d.y += dy / dist * st; if (Math.abs(dx) > 1) d.flip = dx < 0 ? 1 : 0; } }
     if (d.bark > 0) d.bark -= dt;
     const hb = d.hs.bounce; if (hb > 0) { d.hs.bounce = Math.max(0, hb - dt / 1.2); d.hs.set({ bob: Math.abs(Math.sin(hb * Math.PI * 3)) * 10 }); } else if (d.hs.st.bob) d.hs.set({ bob: 0 });

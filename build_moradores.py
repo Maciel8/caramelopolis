@@ -11,11 +11,11 @@ SP = {"pastor alemão": "dog_pastor", "husky": "dog_husky_plain", "pitbull": "do
       "dálmata": "dog_dalmata", "cane corso": "dog_canecorso", "doberman": "dog_doberman", "dogue alemão": "dog_dogue", "kangal": "dog_kangal",
       "boerboel": "dog_boerboel", "mastim inglês": "dog_mastim", "são bernardo": "dog_saobernardo", "greyhound": "dog_greyhound", "galgo inglês": "dog_greyhound",
       "boiadeiro australiano": "dog_boiadeiro", "bull terrier": "dog_bullterrier",
-      "cão-lobo": "dog_caolobo", "samoieda": "dog_samoieda", "pitbull caramela": "dog_pitbull", "pastor belga": "dog_malinois", "boxer": "dog_boxer", "cocker spaniel": "dog_cocker", "pitbull com poodle": "dog_pitbull", "cristado chinês": "dog_cristado", "dogo argentino": "dog_dogo", "fila brasileiro": "dog_fila", "braco alemão": "dog_braco", "bulldog francês": "dog_bulldogfrances", "bulldog": "dog_bulldog", "buldogue": "dog_bulldog", "border collie": "dog_bordercollie", "spitz alemão": "dog_spitz", "mistura de 5 raças": "dog_pastor", "caramelo": "dog_caramelo2", "caramelo médio": "dog_caramelo2", "salsicha preto e marrom": "dog_salsicha_longo", "salsicha marrom": "dog_salsicha2", "husky siberiano": "dog_husky_plain"}
+      "cão-lobo": "dog_caolobo", "labrador": "dog_golden2", "mastim tibetano": "dog_mastim", "akita": "dog_spitz", "presa canário": "dog_canecorso", "pastor alemão com vira-lata": "dog_mix_padeiro", "samoieda": "dog_samoieda", "pitbull caramela": "dog_pitbull", "pastor belga": "dog_malinois", "boxer": "dog_boxer", "cocker spaniel": "dog_cocker", "pitbull com poodle": "dog_pitbull", "cristado chinês": "dog_cristado", "dogo argentino": "dog_dogo", "fila brasileiro": "dog_fila", "braco alemão": "dog_braco", "bulldog francês": "dog_bulldogfrances", "bulldog": "dog_bulldog", "buldogue": "dog_bulldog", "border collie": "dog_bordercollie", "spitz alemão": "dog_spitz", "mistura de 5 raças": "dog_pastor", "caramelo": "dog_caramelo2", "caramelo médio": "dog_caramelo2", "salsicha preto e marrom": "dog_salsicha_longo", "salsicha marrom": "dog_salsicha2", "husky siberiano": "dog_husky_plain"}
 # onde cada trabalho acontece
 def work_of(trabalho):
     t = trabalho.lower()
-    for k, w in [("exército", "delegacia"), ("fronteira", "delegacia"), ("montanha", "delegacia"), ("ladr", "delegacia"), ("criminosa", "delegacia"), ("restaurante", "padaria"), ("açoug", "padaria"), ("petiscaria", "padaria"), ("loja", "padaria"), ("banco", "padaria"), ("síndic", "prefeitura"), ("eleitor", "palanque"), ("mansão", "mansao"), ("cavador", "praca"), ("sargent", "delegacia"), ("carcereir", "delegacia"), ("detetive", "delegacia"), ("urna", "palanque"), ("trânsito", "praca"), ("confeit", "padaria"), ("moleir", "padaria"), ("cafeteria", "padaria"), ("pastel", "padaria"), ("borrach", "oficina"), ("assessor", "prefeitura"), ("presidente", "prefeitura"), ("vereador", "prefeitura"), ("contador", "prefeitura"), ("bancári", "padaria"), ("aluno", "escola"), ("pediatra", "praca"), ("cirurg", "praca"), ("bope", "delegacia"), ("polic", "delegacia"), ("comandante", "delegacia"), ("forças", "delegacia"), ("guard", "delegacia"), ("segur", "delegacia"),
+    for k, w in [("speed space", "sede"), ("nasa", "sede"), ("mercado", "padaria"), ("açoug", "padaria"), ("juiz", "prefeitura"), ("relações", "prefeitura"), ("frentista", "sede"), ("vice", "prefeitura"), ("vereador", "prefeitura"), ("procurado", "delegacia"), ("serial", "delegacia"), ("exército", "delegacia"), ("fronteira", "delegacia"), ("montanha", "delegacia"), ("ladr", "delegacia"), ("criminosa", "delegacia"), ("restaurante", "padaria"), ("açoug", "padaria"), ("petiscaria", "padaria"), ("loja", "padaria"), ("banco", "padaria"), ("síndic", "prefeitura"), ("eleitor", "palanque"), ("mansão", "mansao"), ("cavador", "praca"), ("sargent", "delegacia"), ("carcereir", "delegacia"), ("detetive", "delegacia"), ("urna", "palanque"), ("trânsito", "praca"), ("confeit", "padaria"), ("moleir", "padaria"), ("cafeteria", "padaria"), ("pastel", "padaria"), ("borrach", "oficina"), ("assessor", "prefeitura"), ("presidente", "prefeitura"), ("vereador", "prefeitura"), ("contador", "prefeitura"), ("bancári", "padaria"), ("aluno", "escola"), ("pediatra", "praca"), ("cirurg", "praca"), ("bope", "delegacia"), ("polic", "delegacia"), ("comandante", "delegacia"), ("forças", "delegacia"), ("guard", "delegacia"), ("segur", "delegacia"),
                  ("padeir", "padaria"), ("padaria", "padaria"), ("professor", "escola"), ("diretor", "escola"), ("coorden", "escola"),
                  ("mecânic", "oficina"), ("floricult", "floricultura"), ("candidat", "palanque"), ("investidor", "mansao"),
                  ("fiscal", "prefeitura"), ("corretor", "prefeitura"), ("advogad", "prefeitura"), ("médic", "praca"), ("enferm", "praca"), ("veterin", "praca"),
@@ -156,9 +156,62 @@ M = [
   ("luiz0sant", "Luiz S.", "fila brasileiro", "caçador (de osso)", 3, False),
   ("vih.vieira13", "Vitória", "spitz alemão", "quer a mansão com piscina e a prefeitura", 3, False),
   ("ders.onzin", "Ders", "vira-lata", "eleitor (votou no Diogzin)", 3, False),
+  # ---- eps. 4, obra e 5 (coleta 12/11/2026): insistentes, sócios do Speed, ricos, polícia, saúde e os demais ----
+  ("arthurdealbergariado", "Arthur", "pitbull", "sócio da Speed Space", 5, False),
+  ("br.y001", "Pit Monster", "pitbull", "empresário da Speed Space", 5, False),
+  ("ceciliadamatacaixeta", "Cecília C.", "border collie", "trabalha pro Speed (Speed Space)", 5, False),
+  ("nicolly.aquino", "Lola", "pug", "diretora da NASA (Speed Space)", 5, False),
+  ("rafaelswaizergalle", "Rafael", "salsicha", "dono da mansão antiga do Speed", 5, False),
+  ("walex.zx_", "Walex", "pitbull", "dono do mercado", 5, False),
+  ("olivrxsqs___._", "Oliveira", "husky", "dono da segunda padaria", 5, False),
+  ("music_addicteddd777", "Lucas (juiz)", "pinscher", "juiz da cidade", 5, False),
+  ("raphael._.sense", "Raphael", "border collie", "bancário", 5, False),
+  ("bento62322", "Bento", "border collie", "açougueiro", 5, False),
+  ("helo_bf22", "Helô", "samoieda", "relações públicas da cidade", 5, False),
+  ("ryanff233", "Ryan", "caramelo", "frentista do posto da Speed Space", 5, False),
+  ("xrna.naxr", "Nana", "poodle", "professora", 5, False),
+  ("anne038147", "Anne", "poodle", "veterinária do posto", 4, False),
+  ("auroradebuss_", "Aurora", "pug", "moradora", 4, False),
+  ("lh.limazs", "Lima", "labrador", "salva-vidas do lago", 4, False),
+  ("isx.santoss", "Isx", "vira-lata", "mascote do BOPE (queria ser dinossauro)", 4, False),
+  ("neto.ubirajara", "Neto", "golden", "vice-prefeito", 4, False),
+  ("arthurferreira_goncalves", "Arthur F.", "caramelo", "corre atrás de gente", 4, False),
+  ("dhr.yuri_l", "Yuri L.", "mastim tibetano", "vereador", 4, False),
+  ("isabelaavitoria__", "Nala", "pitbull", "policial", 4, False),
+  ("vitorgabriel_kaka", "Thor", "pitbull", "protetor da cidade", 4, False),
+  ("_.2k.silvaa", "2K", "vira-lata", "milionário que quer comprar a Lua", 4, False),
+  ("lkzin_2212", "Lkzin", "pitbull", "morador", 4, False),
+  ("isis_fofa2", "Isis", "pinscher", "moradora", 4, False),
+  ("cota.w9", "Cota", "fila brasileiro", "pedreiro-chefe", 4, False),
+  ("lopes_bia010", "Bia", "golden", "dona da casa com piscina", 4, False),
+  ("larissalourdessouza", "Larissa L.", "vira-lata", "dona da casa de dois andares", 4, False),
+  ("roo.ruan", "Ruan", "pastor alemão", "mecânico de bicicleta", 4, False),
+  ("vivi8913169", "Cheetos", "shih tzu", "moradora", 4, False),
+  ("anag.abrielly2016", "Gaby", "vira-lata", "dona da pizzaria", 4, False),
+  ("nicolas_santosmv", "Nicolas", "pastor alemão", "comandante da polícia (turno da noite)", 4, False),
+  ("brunolorezoqueirozfernandes", "Bruno Q.", "pitbull", "médico do hospital", 4, False),
+  ("xxrihanna_motaxx", "Rihanna", "salsicha", "moradora", 4, False),
+  ("pequenocharmosin", "Charmosin", "poodle", "poodle mini toy", 4, False),
+  ("thurv____", "Thur", "rottweiler", "morador", 4, False),
+  ("sombra_katesu", "Yuki", "akita", "criminoso de sucesso (procurado)", 4, False),
+  ("hana.afonso", "Hana", "salsicha", "moradora", 4, False),
+  ("slasla8288", "Slasla", "pastor belga", "policial", 5, False),
+  ("filpozs", "Filpo", "salsicha", "serial killer de ossos", 5, False),
+  ("zabella_soutto", "Zaza", "husky", "floricultura 2", 5, False),
+  ("alho_criador4", "Alho", "shih tzu", "programador", 5, False),
+  ("yuriacassio", "Yuri A.", "kangal", "empresário (mansão de dois andares)", 5, False),
+  ("_0liveirasz04", "Oliveira S.", "presa canário", "morador", 5, False),
+  ("kitxzcatz11", "Choco", "salsicha", "militar rico", 5, False),
+  ("ea.falcci", "Falcci", "border collie", "enfermeira", 5, False),
+  ("gomes.080__", "Gomes", "pitbull", "morador", 5, False),
+  ("mafefj", "Mafê", "dogue alemão", "a cachorra mais rica", 5, False),
+  ("alicesampaiiodonascimento", "Alice", "caramelo", "advogada muito rica", 5, False),
+  ("lucasvieiradecastilho", "Lucas C.", "husky", "morador", 5, False),
+  ("isauraerecampo", "Isaura", "salsicha", "moradora", 5, False),
+  ("zgustamito", "Gustamito", "vira-lata", "não faz nada", 5, False),
 ]
-CASA = {"racadodia": "mansao", "enzo_zz100": "rua"}
-EPS = {1: "https://www.instagram.com/caramelopolis.br/reel/DfkGdM9q87-/", 2: "https://www.instagram.com/caramelopolis.br/reel/Dfk8H-NK3Sn/", 3: "https://www.instagram.com/caramelopolis.br/reel/DfmXMleK4Jw/", 4: "https://www.instagram.com/caramelopolis.br/reel/DfngK8Wqvo-/"}
+CASA = {"racadodia": "casa_speed", "enzo_zz100": "rua", "rafaelswaizergalle": "mansao"}
+EPS = {1: "https://www.instagram.com/caramelopolis.br/reel/DfkGdM9q87-/", 2: "https://www.instagram.com/caramelopolis.br/reel/Dfk8H-NK3Sn/", 3: "https://www.instagram.com/caramelopolis.br/reel/DfmXMleK4Jw/", 4: "https://www.instagram.com/caramelopolis.br/reel/DfngK8Wqvo-/", 5: "https://www.instagram.com/caramelopolis.br/reel/DfpDqmnq4zf/", 6: "https://www.instagram.com/caramelopolis.br/reel/DfpDqmnq4zf/"}
 URNA = {"aberta": False, "fecha": "fechou no ep. 4", "parcial": [["LILY", 4], ["DAVI", 2], ["DIOGZIN", 1], ["RONALDO", 0], ["LUCAS", 0]], "prefeito": "LILY"}  # contagem final 11/11 18:45
 
 lote = 0; out = []
@@ -167,6 +220,6 @@ for row in M:
     casa = CASA.get(h)
     if casa is None: casa = lote; lote += 1
     out.append({"id": h, "nome": nome, "raca": raca, "trabalho": trab, "ep": ep, "sprite": SP.get(raca, "dog_caramelo2"), "work": work_of(trab), "casa": casa, "video": video})
-data = {"atualizado": datetime.date.today().isoformat(), "episodio_atual": 4, "episodios": EPS, "urna": URNA, "moradores": out}
+data = {"atualizado": datetime.date.today().isoformat(), "episodio_atual": 6, "episodios": EPS, "urna": URNA, "moradores": out}
 json.dump(data, open("moradores.json", "w"), ensure_ascii=False, indent=1)
 print(len(out), "moradores,", lote, "lotes")

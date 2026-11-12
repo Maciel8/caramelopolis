@@ -40,6 +40,40 @@ for x, y in [[520, 300], [630, 300], [520, 560], [640, 560], [520, 700], [640, 7
 for x, y in [[420, 480], [640, 440], [520, 480], [560, 540], [620, 540], [740, 480], [240, 540], [330, 740], [980, 740], [120, 700], [1000, 400], [160, 490]]: piece("flowerbed", x, y)
 for x, y in [[455, 480], [560, 400], [625, 400], [455, 560], [700, 560], [140, 450], [930, 450], [260, 870], [700, 870], [860, 650], [1040, 850], [250, 690]]: piece("bush2", x, y)
 piece("bench", 545, 520)
+# ---- NORTE: terreno do Speed (casa gigante + sede Speed Space) e, do outro lado do muro, a Vila dos Gatos (ep. 6)
+def opt(k, x, y, kind="decor"):
+    if k in META: return piece(k, x, y, kind)
+road_h(-60, 1204, -46); road_v(45, -480, 288); road_v(1130, -480, 288)         # rua norte ligando as laterais
+for y0, y1 in [[-440, -70]]: hedge_v(8, y0, y1); hedge_v(1148, y0, y1)
+hedge_h(70, 1110, -470)
+if "mansao_gigante" in META:
+    m = META["mansao_gigante"]; x0, y0 = 640 - m["w"] // 2, -80 - m["h"]; piece("mansao_gigante", x0, y0, "building")
+    L["buildings"]["casa_speed"] = {"x": 640, "y": -86, "h": m["h"], "w": m["w"], "label": "CASA DO SPEED"}
+if "sede_speed" in META:
+    m = META["sede_speed"]; x0, y0 = 300 - m["w"] // 2, -90 - m["h"]; piece("sede_speed", x0, y0, "building")
+    L["buildings"]["sede"] = {"x": 300, "y": -96, "h": m["h"], "w": m["w"], "label": "SPEED SPACE"}
+for x, y in [[120, -120], [1060, -120], [120, -300], [1060, -300], [480, -420], [820, -420]]: piece("tree", x - 10, y - 10)
+for x, y in [[200, -100], [1000, -100], [560, -400], [720, -400]]: piece("lamp", x, y, "lamp")
+for x, y in [[460, -60], [820, -60], [160, -200], [1040, -200]]: piece("flowerbed", x, y)
+# Vila dos Gatos: x 1250..1950, y -470..-40, separada por muro (hedge dupla); ruas internas, casas em 3 fileiras, fonte no centro
+hedge_v(1210, -470, -20); hedge_v(1232, -470, -20)
+road_h(1250, 1950, -250); road_v(1590, -470, -20); road_h(1250, 1950, -400); road_h(1250, 1950, -100)
+hedge_v(1950, -470, -270); hedge_v(1950, -230, -20); hedge_h(1250, 1950, -470); hedge_h(1250, 1950, -20)
+for y in [-400, -250, -100]: hedge_h(1262, 1570, y - 20); hedge_h(1262, 1570, y + 30); hedge_h(1612, 1940, y - 20); hedge_h(1612, 1940, y + 30)
+CAT_LOTS = []
+cat_pos = [[1300, -300], [1380, -300], [1460, -300], [1540, -300], [1660, -300], [1740, -300], [1820, -300], [1900, -300], [1300, -150], [1380, -150], [1460, -150], [1540, -150], [1660, -150], [1740, -150], [1820, -150], [1900, -150], [1320, -40], [1420, -40], [1760, -40], [1860, -40]]
+for i, (x, y) in enumerate(cat_pos):
+    k = "casa_gato" if i % 2 == 0 else "casa_gato2"
+    if k in META:
+        m = META[k]; piece(k, x - m["w"] // 2, y - m["h"], "house"); CAT_LOTS.append([x, y, m["h"], m["w"]])
+for x, y in [[1270, -330], [1930, -330], [1270, -190], [1930, -190], [1600, -450], [1500, -60], [1700, -60]]: piece("tree", x - 10, y - 10)
+for x, y in [[1340, -260], [1620, -260], [1850, -260], [1340, -110], [1850, -110]]: piece("flowerbed", x, y)
+for x, y in [[1560, -300], [1640, -300], [1560, -150], [1640, -150]]: piece("lamp", x, y, "lamp")
+opt("fonte_leite", 1590 - META.get("fonte_leite", {"w": 0})["w"] // 2, -236 - META.get("fonte_leite", {"h": 0})["h"], "building")
+opt("placa_gatos", 1262, -110, "building")
+L["buildings"]["vila_gatos"] = {"x": 1590, "y": -236, "h": 60, "w": 120, "label": "VILA DOS GATOS"}
+L["cat_lots"] = CAT_LOTS
+L["buildings"]["mansao"]["label"] = "MANSÃO DO RAFAEL"
 # ---- bairros: mesmas casas (com jardim), quarteirões de 3, rua e cerca viva, lago/parquinho a cada tanto
 RP = 150; hk = 0
 def district(x0, x1, y0, y1):
@@ -58,7 +92,7 @@ def district(x0, x1, y0, y1):
 district(-1500, -60, 60, BH); district(1236, 2700, 60, BH); district(-1500, 2700, BH + 60, BH + 420)
 road_v(-60, -10, BH + 420); road_v(1204, -10, BH + 420); road_h(-1500, 2700, BH + 2)
 L["glows"] = [[527, 945], [653, 945], [255, 960], [935, 960], [590, 340], [700, 965]]   # lampiões pintados dentro dos recortes (portal, muro): só ganham halo à noite
-L["points"] = {"padaria": [160, 990], "escola": [785, 290], "delegacia": [830, 290], "oficina": [340, 290], "floricultura": [1035, 990], "prefeitura": [590, 170], "palanque": [590, 560], "mansao": [1040, 505], "praca": [590, 560], "biblioteca": [770, 695], "mercado": [430, 695], "lago": [300, 295], "parque": [1030, 290], "coreto": [450, 505], "moinho": [150, 290]}
+L["points"] = {"casa_speed": [640, -46], "sede": [300, -46], "vila_gatos": [1590, -236], "padaria": [160, 990], "escola": [785, 290], "delegacia": [830, 290], "oficina": [340, 290], "floricultura": [1035, 990], "prefeitura": [590, 170], "palanque": [590, 560], "mansao": [1040, 505], "praca": [590, 560], "biblioteca": [770, 695], "mercado": [430, 695], "lago": [300, 295], "parque": [1030, 290], "coreto": [450, 505], "moinho": [150, 290]}
 # profundidade: peças ordenadas pelo pé
 L["pieces"].sort(key=lambda p: p["y"] + p["h"])
 json.dump(L, open("obra_layout.json", "w"), ensure_ascii=False)
